@@ -22,7 +22,7 @@ public:
     uint16_t opcode;
 
 
-    Chip();
+    Chip8();
 
     // FUNC:
     void loadROM(char const* fileName);
