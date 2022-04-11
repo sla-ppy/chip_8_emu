@@ -5,14 +5,13 @@
 
 class Chip8 {
 public:
-    //MEMORY:
+    //MEMORY, STACK:
     uint8_t registers[16]{};
     uint8_t memory[4096]{};
     uint16_t index{};
     uint16_t progCounter{};
     uint16_t stack[16]{};
     uint8_t stackPtr{};
-
     // TIMERS:
     uint8_t delayTimer{};
     uint8_t soundTimer{};
@@ -21,6 +20,12 @@ public:
 
     uint32_t graphics[64 * 32]{};
     uint16_t opcode;
+
+
+    Chip();
+
+    // FUNC:
+    void loadROM(char const* fileName);
 };
 
 
