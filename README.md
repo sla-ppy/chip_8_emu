@@ -96,5 +96,50 @@ Keypad       Keyboard
 
 ---
 
+### Loading The Fonts:
+- 16 characters for expected total
+- Each character is represented with 5 bytes - 40 bits
+
+Quick example:
+(The character represented below is 'F')
+```
+11110000
+10000000
+11110000
+10000000
+10000000
+```
+
+---
+
+# The Instructions
+- 34 in total
+- [Useful source for more info on them](http://devernay.free.fr/hacks/chip8/C8TECH10.HTM)
+
+```
+00E0 - CLS 	        - Clear
+00EE - RET 	        - Return
+1nnn - JP addr      - Jump to nnn
+2nnn - CALL addr    - Call subroutine at nnn
+3xkk - SE Vx, byte  - Skip next instruction if Vx = kk
+4xkk - SNE Vx, byte - Skip next instruction if Vx != kk
+5xí0 - SE Vx, Vy	   - Skip next instruction if Vx = Vy
+6xkk - LD Vx, byte  - Set Vx = kk
+7xkk - ADD Vx, byte - Set Vx = Vx + kk
+8xy0 - LD Vx, Vy    - Set Vx = Vy
+8xy1 - OR Vx, Vy    - Set Vx = Vx OR Vy
+8xy2 - AND Vx, Vy   - Set Vx = Vx AND Vy
+8xy3 - XOR Vx, Vy   - Set Vx = Vx XOR Vy
+
+8xy4 - ADD Vx, Vy   - Set Vx = Vx + Vy, set VF = carry
+The values of Vx and Vy are added together. If the result is greater than 8 bits (i.e., > 255,) VF is set to 1, otherwise 0. Only the lowest 8 bits of the result are kept, and stored in Vx.
+
+8xy5 - SUB Vx, Vy   - Set Vx = Vx - Vy, set VF = NOT borrow.
+If Vx > Vy, then VF is set to 1, otherwise 0. Then Vy is subtracted from Vx, and the results stored in Vx.
+
+8xy6 - SHR Vx       - Set Vx = Vx SHR 1.
+If the least-significant bit of Vx is 1, then VF is set to 1, otherwise 0. Then Vx is divided by 2.
+```
+
 ## Source:
 [Austin Morlan - Chip8 emulator](https://austinmorlan.com/posts/chip8_emulator/#16-8-bit-registers)

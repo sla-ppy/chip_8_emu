@@ -19,9 +19,13 @@ public:
     uint8_t keypad[16]{};
 
     uint32_t graphics[64 * 32]{};
-    uint16_t opcode;
+    uint16_t opcode{};
 
+    // RNG
+    std::default_random_engine randGen;
+    std::uniform_int_distribution<uint8_t> randByte;
 
+    // time_since_epoch() returns "duration", which we the immediately call count() on
     Chip8();
 
     // FUNC:
