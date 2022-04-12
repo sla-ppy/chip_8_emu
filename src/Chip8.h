@@ -18,7 +18,7 @@ public:
     // INPUT:
     uint8_t keypad[16]{};
 
-    uint32_t graphics[64 * 32]{};
+    uint32_t video[64 * 32]{};
     uint16_t opcode{};
 
     // RNG
@@ -30,6 +30,20 @@ public:
 
     // FUNC:
     void loadROM(char const* fileName);
+
+    // OPCODES:
+    void OP_00E0();
+    void OP_00EE();
+    void OP_00EE();
+    void OP_00EE();
+    void OP_00EE();
+    void OP_00EE();
+    void OP_00EE();
+    void OP_00EE();
+    void OP_00EE();
+    void OP_00EE();
+    void OP_00EE();
+    void OP_00EE();
 };
 
 
